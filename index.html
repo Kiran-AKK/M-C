@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Wishes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.w3schools.com/w3images/christmas.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            z-index: 10;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 18px;
+            background-color: #f0f0f0;
+        }
+
+        button {
+            background-color: #ff6347;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #e55347;
+            transform: scale(1.1);
+        }
+
+        .snowflake {
+            position: absolute;
+            color: white;
+            font-size: 30px;
+            z-index: 1;
+            animation: snowfall linear infinite;
+        }
+
+        @keyframes snowfall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 50px auto;
+                padding: 15px;
+                align-items: center;
+            }
+
+            button {
+                font-size: 18px;
+                padding: 12px 25px;
+            }
+
+            input[type="text"], input[type="password"] {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin: 30px auto;
+                padding: 10px;
+                align-items: center;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+
+            input[type="text"], input[type="password"] {
+                font-size: 14px;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Snowflakes -->
+<script>
+    const snowflakeCount = 50;
+
+    for (let i = 0; i < snowflakeCount; i++) {
+        const snowflake = document.createElement('div');
+        snowflake.classList.add('snowflake');
+        snowflake.textContent = '❄️';
+        snowflake.style.left = `${Math.random() * 100}vw`;
+        snowflake.style.top = `${Math.random() * -50}vh`;
+        snowflake.style.animationDuration = `${Math.random() * 3 + 5}s`;
+        snowflake.style.animationDelay = `${Math.random() * 5}s`;
+        snowflake.style.fontSize = `${Math.random() * 15 + 15}px`;
+        document.body.appendChild(snowflake);
+    }
+</script>
+
+<div class="container">
+    <h1>🎄 Let's Spread the Christmas Cheer! ✨</h1>
+    <p>Enter your name and password to get a special Christmas message! 🎅🤶</p>
+    <p>Password: Merry Christmas</p>
+    <form id="signupForm">
+        <input type="text" id="username" placeholder="Enter Your Name" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">🎁 Sign Up 🎁</button>
+    </form>
+</div>
+
+<script>
+    const specialUsers = ["Suvi Joy", "suvi joy", "Suvi", "suvi"];  // Adjust this array for special names
+    const form = document.getElementById("signupForm");
+    const usernameInput = document.getElementById("username");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const username = usernameInput.value.trim();
+        const normalizedUsername = username.toLowerCase();
+
+        if (!username) {
+            alert("Please enter your name.");
+            return;
+        }
+
+        if (specialUsers.some(user => user.toLowerCase() === normalizedUsername)) {
+            window.location.href = `special-message.html?username=${encodeURIComponent(username)}`;
+        } else {
+            window.location.href = `normal-message.html?username=${encodeURIComponent(username)}`;
+        }
+    });
+</script>
+
+</body>
+</html>
